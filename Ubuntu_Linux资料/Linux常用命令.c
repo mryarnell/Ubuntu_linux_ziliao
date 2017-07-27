@@ -274,8 +274,9 @@ SQL (Structured Query Language)
 DDL
 	mysql> create database if not exists 'databasename';
 	mysql> use 'databasename'
-	不够精确：create table ['databasename'.]'tablename' 
-	
+    创建一个表：
+    mysql> create table student( id int unsigned not null auto_increment primary key);		
+
 	mysql> drop database if not exists 'databasename';
 	mysql> drop table if not exists 'tablename';
 	
