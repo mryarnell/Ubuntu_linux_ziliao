@@ -274,11 +274,25 @@ SQL (Structured Query Language)
 DDL
 	mysql> create database if not exists 'databasename';
 	mysql> use 'databasename'
-    创建一个表：
-    mysql> create table student( id int unsigned not null auto_increment primary key);		
-
+	
 	mysql> drop database if not exists 'databasename';
 	mysql> drop table if not exists 'tablename';
+//---------------------创建一个表-----------------------------------------
+    创建一个表：
+    mysql> create table student( id int unsigned not null auto_increment primary key);	
+
+	对于一些较长的语句在命令提示符下可能容易输错, 因此我们可以通过任何文本编辑器将语句输入好后保存为 createtable.sql 的文件中, 通过命令提示符下的文件重定向执行执行该脚本。
+打开命令提示符, 输入: mysql -D 'databasename' -u root -p < createtable.sql
+	以创建 students 表为例, 表中将存放 学号(id)、姓名(name)、性别(sex)、年龄(age)、联系电话(tel) 这些内容:
+	create table students
+	(
+		id int unsigned not null auto_increment primary key,
+		name char(8) not null,
+		sex char(4) not null,
+		age tinyint unsigned not null,
+		tel char(13) null default "-"
+	);
+	
 	
 DML
 	mysql> insert into users(id,name) values('1','zhangsan');
@@ -294,6 +308,15 @@ DCL
 	mysql> show tables;				#看所有表
 	mysql> desc	'tablename';		#看表结构
 	mysql> show variables			#配置文件中的变量
+	
+	例如要查询 students 表中所有学生的名字和年龄, 输入语句:
+	mysql> select name, age from 'tablename';
+	使用通配符 * 查询表中所有的内容, 语句: 
+	mysql> select * from 'tablename';
+	
+	更新表中的数据
+	update 表名称 set 列名称=新值 where 更新条件;
+	mysql> update 'tablename' set name='tyn' where id=2;
 	
 数据值和列类型
 	1字节	tinyint
